@@ -36,9 +36,24 @@ void QuickSort(int array[], int l, int h){
 }
 
 int main() {
-    int A[] = {10, 16, 8, 12, 15, 6, 3, 9, 5, 4};
+    int size;
+    cout << "Enter the size of the array: ";
+    cin >> size;
+    int A[size];
+
+    cout << "Enter the values of the array: " << endl;
+    for (int i = 0; i < size; i++)
+    {
+        cin >> A[i];
+    }
+
     int low = 0;
     int high = sizeof(A)/sizeof(A[0]);
+
+    for(int x: A)
+        cout << x << " ";
+    cout << "" << endl;
+
     QuickSort(A, low, high);
 
     for(int x: A)
