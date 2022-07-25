@@ -26,12 +26,12 @@ int partition(int array[], int l, int h){
 }
 
 void QuickSort(int array[], int l, int h){
-    int j;
+    int pi; //partitioning index
     if (l < h)
     {
-        j = partition(array, l, h);
-        QuickSort(array, l, j);
-        QuickSort(array, j+1, h);
+        pi = partition(array, l, h);
+        QuickSort(array, l, pi - 1);
+        QuickSort(array, pi+1, h);
     }
 }
 
