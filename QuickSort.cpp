@@ -50,12 +50,14 @@ int main() {
     int low = 0;
     int high = sizeof(A)/sizeof(A[0]);
 
+    cout << "Before sorting: " << endl; 
     for(int x: A)
         cout << x << " ";
     cout << "" << endl;
 
     QuickSort(A, low, high);
 
+    cout << "After sorting: " << endl;
     for(int x: A)
         cout << x << " ";
 }
