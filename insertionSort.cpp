@@ -11,7 +11,7 @@ int main(){
         int i = j - 1;
         int key = a[j];
 
-        while (i >= 0 && a[i] < key)
+        while (i >= 0 && a[i] > key) //a[i] < key for descending order
         {
             a[i + 1] = a[i];
             i = i - 1;
