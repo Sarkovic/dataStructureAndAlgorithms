@@ -1,8 +1,12 @@
+/*Stack is LIFO (Last In, First Out) data structure.
+It has two main properties, "push()" to input value in
+the Stack and "pop()" to remove/output the  value in
+the stack*/
 #include <bits/stdc++.h>
 
 using namespace std;
 
-int stck[10], n = 10, top = -1;
+int stck[10], n = 10, top = -1; //when stack is empty top value starts from -1
 
 void push(int val)
 {
@@ -11,28 +15,37 @@ void push(int val)
     else
     {
         stck[top + 1] = val;
-        top++;
+        top++; //increment the top value
+        /* -1 + 1 = 0, stack[0] = input, top = 0
+        0 + 1 = 1, stack[1] = input, top = 1
+        1 + 1 = 2, stack[2] = input, top = 2 
+        ....................................
+        top+1 = top+1, stack[top+1] = input
+        if top+1 reaches the capacity of the stack
+        it prints "Stack Overflow"*/
     }
 }
 
 void pop()
 {
-    if (top == -1)
+    if (top == -1) //when stack is empty top value starts from -1
         cout << "Stack Underflow" << endl;
     else
     {
         int val = stck[top];
         cout << val << endl;
         stck[top] = NULL;
-        top--;
+        top--; //decrement the top value
     }
 }
 
 void display()
 {
-    if (top >= 0)
+    if (top >= 0) //stack starts putting value from 0 position
     {
-        for (int i = top; i >= 0; i--)
+        for (int i = top; i >= 0; i--) 
+        /*As stack is a LIFO structure, 
+        we start iterating from the top*/
         {
             cout << stck[i] << " ";
         }
