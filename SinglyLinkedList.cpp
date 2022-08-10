@@ -132,6 +132,20 @@ void deleteAnyPos(int n){
     free(temp2);
 }
 
+void reverse(){
+    node *current, *prev, *next;
+    current = head;
+    prev = NULL;
+    while (current != NULL)
+    {
+        next = current -> next;
+        current -> next = prev;
+        prev = current;
+        current = next;
+    }
+    head = prev;
+}
+
 
 int main(){
     for (int i = 0; i <= 200; i+=50)
@@ -175,6 +189,10 @@ int main(){
     printList();
 
     deleteAnyPos(4);
+    cout << endl;
+    printList();
+
+    reverse();
     cout << endl;
     printList();
     
