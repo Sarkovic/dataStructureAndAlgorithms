@@ -3,7 +3,7 @@
 using namespace std;
 
 int main(){
-    int a[] = {10, 5, 8, 7};
+    int a[] = {10, 8, 7, 5};
     int N = sizeof(a) / sizeof(int);
 
     for (int j = 1; j < N; j++)
@@ -11,7 +11,7 @@ int main(){
         int i = j - 1;
         int key = a[j];
 
-        while (i >= 0 && a[i] < key)
+        while (i >= 0 && a[i] > key)
         {
             a[i + 1] = a[i];
             i = i - 1;
