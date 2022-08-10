@@ -40,9 +40,9 @@ void quickSort(int arr[], int low, int high){
 }
 
 int main(){
-    int A[] = { 9, 14, 6, 1, 7, 11, 3, 5 };
-    quickSort(A, 0, 7);
-    for (size_t i = 0; i < 7; i++)
+    int A[] = { 5, 9, 7, 8, 10, 2, 1, 3, 4 };
+    quickSort(A, 0, 9);
+    for (size_t i = 0; i < 9; i++)
     {
         cout << A[i] << " ";
     }
