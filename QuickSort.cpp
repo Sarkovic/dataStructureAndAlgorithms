@@ -1,63 +1,51 @@
-#include <iostream>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-int partition(int array[], int l, int h){
-    int pivot = array[l];
-    int i = l;
-    int j = h;
+int partition(int arr[], int low, int high){
+    int pivot = arr[low];
+    int i = low;
+    int j = high;
 
-    while(i < j){
-        do
+    int temp;
+
+    while (i < j)
+    {
+       while (arr[i] <= pivot)
         {
             i++;
-        } while (array[i] <= pivot);
-        do
+        }
+        while (arr[j] > pivot)
         {
             j--;
-        } while (array[j] > pivot);
-        if (i < j)
-        {
-            swap(array[i], array[j]);
+        }
+        if(i < j){
+            temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
         }
     }
-    swap(array[l], array[j]);
+    arr[low] = arr[j];
+    arr[j] = pivot;
+    
     return j;
 }
 
-void QuickSort(int array[], int l, int h){
-    int pi; //partitioning index
-    if (l < h)
-    {
-        pi = partition(array, l, h);
-        QuickSort(array, l, pi - 1);
-        QuickSort(array, pi+1, h);
+void quickSort(int arr[], int low, int high){
+    if(low < high){
+        int pivot = partition(arr, low, high);
+        quickSort(arr, low, pivot - 1);
+        quickSort(arr, pivot + 1, high);
     }
 }
 
-int main() {
-    int size;
-    cout << "Enter the size of the array: ";
-    cin >> size;
-    int A[size];
-
-    cout << "Enter the values of the array: " << endl;
-    for (int i = 0; i < size; i++)
+int main(){
+    int A[] = { 9, 14, 6, 1, 7, 11, 3, 5 };
+    quickSort(A, 0, 7);
+    for (size_t i = 0; i < 7; i++)
     {
-        cin >> A[i];
+        cout << A[i] << " ";
     }
-
-    int low = 0;
-    int high = sizeof(A)/sizeof(A[0]);
-
-    cout << "Before sorting: " << endl; 
-    for(int x: A)
-        cout << x << " ";
-    cout << "" << endl;
-
-    QuickSort(A, low, high);
-
-    cout << "After sorting: " << endl;
-    for(int x: A)
-        cout << x << " ";
+    
+    return 0;
 }
