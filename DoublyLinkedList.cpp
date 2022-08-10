@@ -62,11 +62,28 @@ void printListReverse(){
     cout << endl;
 }
 
+void append(int value){
+    if(head == NULL){
+        head = createNode(value);
+        tail = head;
+    }
+    else{
+        node* temp = createNode(value);
+        while (tail -> next != NULL)
+        {
+            tail = tail -> next;
+        }
+        tail -> next = temp;
+        temp -> prev = tail;
+    }
+}
+
 int main(){
     head = NULL;
-    insertAtHead(45);
-    insertAtHead(23);
-    insertAtHead(67);
+    for (int i = 50; i <= 500; i+=50)
+    {
+        append(i);
+    }
     printList();
     printListReverse();
     
