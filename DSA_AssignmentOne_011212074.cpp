@@ -49,8 +49,7 @@ ListNode* Search(int data){
 }
 
 void deleteFirst(){
-    ListNode* temp;
-    temp = head;
+    ListNode* temp = head;
     head = head -> next;
     free(temp);
 }
