@@ -43,27 +43,91 @@ int linearSearch(int arr[], int n, int key){
     return -1;
 }
 
-int main(){
-    int A[] = {11, 21, 32, 43, 54, 65, 76, 87, 98, 109};
-    int n = sizeof(A) / sizeof(A[0]);
-    int input;
-    cin >> input;
-    int resultIterative = binarySearchIterative(A, 10, input);
-    cout << "Iterative:" << endl;
-    if (resultIterative == -1)
+int maximum(int arr[], int size){
+    int maxElement = arr[0];
+    for (int i = 1; i < size; i++)
     {
-        cout << "Not Found" << endl;
+        if (arr[i] > maxElement)
+        {
+            maxElement = arr[i];
+        }
     }
-    else{
-        cout << "Found at: " << resultIterative + 1 << endl;
+    return maxElement;
+}
+
+void countingSort(int arr[], int size){
+    int max = maximum(arr, size);
+    int arr2[max + 1] = {0};
+    int arr3[size + 1];
+    for (int i = 0; i < size; i++)
+    {
+        arr2[arr[i]]++;
+    }
+    for (int i = 1; i < max+1; i++)
+    {
+        arr2[i] += arr2[i-1];
+
+    }
+    for (int i = size-1; i >= 0; i--)
+    {
+        arr3[arr2[arr[i]] - 1] = arr[i];
+        arr2[arr[i]]--;
+    }
+    for (int i = 0; i < size; i++)
+    {
+        arr[i] = arr3[i];
+    }
+}
+
+void bubbleSort(int arr[], int size) {
+    for (int i = 0; i < size - 1; i++)
+    {
+        for (int j = 0; j < size - 1 - i; j++)
+        {
+           if(arr[j] > arr[j+1]){
+            swap(arr[j], arr[j+1]);
+           }
+        }
+    }
+    return;
+}
+
+void selectionSort(int arr[], int size) {
+    for (int i = 0; i < size - 1; i++)
+    {
+        int minin = i;
+        for (int j = i+1; j < size; j++)
+        {
+            if(arr[j] < arr[minin])
+                minin = j;
+        }
+        swap(arr[i], arr[minin]);
+    }
+    return;
+}
+
+int main(){
+    int A[] = {5, 6, 2, 4, 11, 8, 6, 3};
+    int B[] = {34, 12, 4, 67, 33, 232, 34};
+    int C[] = {54, 23, 65, 6, 21, 56, 93, 23};
+    int nB = sizeof(B)/sizeof(B[0]);
+    int n = sizeof(A)/sizeof(A[0]);
+    int nC = sizeof(C)/sizeof(C[0]);
+    countingSort(A, n);
+
+    for(int i: A){
+        cout << i << endl;
+    } 
+
+    bubbleSort(B, nB);
+    for(int i: B){
+        cout << i << endl;
     }
 
-    int resultRecursive = binarySearchRecursive(A, 0, n-1, input);
-    cout << "Recursive:" << endl;
-    if (resultRecursive == -1)
-        cout << "Not Found" << endl;
-    else
-        cout << "Found at: " << resultRecursive + 1 << endl;
+    selectionSort(C, nC);
+    for(int i: C){
+        cout << i << endl;
+    }
     
     return 0;
 }
