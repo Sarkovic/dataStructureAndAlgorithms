@@ -23,6 +23,15 @@ node* createNode(int value){
     return temp;
 }
 
+node* searchNode(int value){
+    for(node* i = head; i != NULL; i = i -> next){
+        if (i -> data == value)
+        {
+            return i;
+        }
+    }
+}
+
 void insertAtHead(int value){
     node* temp = createNode(value);
     if(head == NULL){
@@ -31,6 +40,34 @@ void insertAtHead(int value){
     }
     head -> prev = temp;
     temp -> next = head;
+    head = temp;
+}
+
+void insertAtEnd(int value){
+    node* lastNode = createNode(value);
+    node* temp = head;
+    while (temp -> next != NULL)
+    {
+        temp = temp -> next;
+    }
+    lastNode -> next = temp -> next;
+    temp -> next = lastNode;
+    lastNode -> prev = temp; 
+}
+
+void insertAfterCertainData(int insertAfter, int value){
+    node* newNode = createNode(value);
+    node* temp = searchNode(insertAfter);
+    newNode -> next = temp -> next;
+    newNode -> next -> prev = newNode;
+    temp -> next = newNode;
+    newNode -> prev = temp;
+}
+
+void deleteFirst(){
+    node* temp = head -> next;
+    temp -> prev = NULL;
+    free(head);
     head = temp;
 }
 
@@ -84,6 +121,18 @@ int main(){
     {
         append(i);
     }
+    printList();
+    printListReverse();
+    
+    insertAtEnd(34);
+    printList();
+    printListReverse();
+
+    insertAfterCertainData(350, 1233);
+    printList();
+    printListReverse();
+
+    deleteFirst();
     printList();
     printListReverse();
     
