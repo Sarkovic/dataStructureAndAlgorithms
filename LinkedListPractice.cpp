@@ -64,7 +64,6 @@ void insertLast(int value){
     }
     temp -> next = newNode;
     newNode -> prev = temp;
-    newNode -> next = NULL;
 }
 
 void insertAfterCertainData(int insertAfter, int value){
@@ -72,40 +71,6 @@ void insertAfterCertainData(int insertAfter, int value){
     node* temp = searchNode(insertAfter);
     newNode -> next = temp -> next;
     temp -> next = newNode;
-}
-
-void deleteFirst(){
-    node* temp = head;
-    head = head -> next;
-    free(temp);
-}
-
-void deleteLast(){
-    if(head != NULL){
-        if(head -> next == NULL)
-            head = NULL;
-        else{
-            node* temp = head;
-            while (temp -> next -> next != NULL)
-            {
-                temp = temp -> next;
-            }
-            node* lastNode = temp -> next;
-            temp -> next = NULL;
-            free(lastNode);
-        }
-    }
-}
-
-void deleteAfterCertainData(int deleteAfter){
-    if (head != NULL)
-    {
-        node* temp = searchNode(deleteAfter);
-        node* deleteNode = temp -> next;
-        temp -> next = deleteNode -> next;
-        free(deleteNode);
-    }
-    
 }
 
 void printList(){
@@ -118,19 +83,33 @@ void printList(){
     cout << endl;
 }
 
-void printListReverse(){
+void deleteFirst(){
     node* temp = head;
-    while (temp -> next != NULL)
-    {
-        temp = temp -> next;
+    head = head -> next;
+    free(temp);
+}
+
+void deleteLast(){
+    node* temp;
+
+    if(head == NULL){
+        cout << "\n Underflow" << endl;
     }
-    
-    while (temp != NULL)
-    {
-        cout << temp -> data << " ";
-        temp = temp -> prev;
+    else if(head -> next == NULL){
+        head = NULL;
+        free(head);
+        cout << "\n Node Deleted" << endl;
     }
-    cout << endl;
+    else{
+        temp = head;
+        while(temp->next != NULL)
+        {
+            temp = temp->next;
+        }
+        temp->prev->next = NULL;
+        free(temp);
+        cout << "\nNode Deleted" << endl;
+    }
 }
 
 int main() {
@@ -144,7 +123,8 @@ int main() {
     insertLast(33464);
     printList();
 
-    printListReverse();
+    deleteLast();
+    printList();
     
     return 0;
 }
