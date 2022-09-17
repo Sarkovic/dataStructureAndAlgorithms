@@ -124,7 +124,6 @@ void printListReverse(){
     {
         temp = temp -> next;
     }
-    
     while (temp != NULL)
     {
         cout << temp -> data << " ";
