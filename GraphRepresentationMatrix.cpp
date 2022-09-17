@@ -1,44 +1,49 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+
 using namespace std;
-int main()
-{
+
+int main(){
     freopen("input.txt", "r", stdin);
 
     int vertices, edges;
-    scanf("%d%d", &vertices, &edges);
+    cin >> vertices >>  edges;
 
     int Graph[vertices][vertices];
     memset(Graph, 0, sizeof(Graph));
 
-    for(int i=0; i<edges; i++)
+    //Set value in the matrix
+    for (int i = 0; i < edges; i++)
     {
         int u, v;
-        scanf("%d%d", &u, &v);
+        cin >> u >> v;
         Graph[u][v] = 1;
     }
 
-    for(int i=0; i<vertices; i++)
+    //Print the matrix
+    for (int i = 0; i < vertices; i++)
     {
-        for(int j=0; j<vertices; j++)
+        for (int j = 0; j < vertices; j++)
         {
-            printf("%d ", Graph[i][j]);
+            cout << Graph[i][j] << " ";
         }
-        printf("\n");
+        cout << endl;
     }
-
-
-    for(int i=0; i<vertices; i++)
+    
+    cout << endl;
+    cout << endl;
+    //Printing the graph
+    for (int i = 0; i < vertices; i++)
     {
-        printf("%d --> ", i);
-        for(int j=0; j<vertices; j++)
+        cout << i << " --> ";
+        for (int j = 0; j < vertices; j++)
         {
-            if(Graph[i][j]==1)
-            {
-                printf("%d ", j);
-            }
+            if(Graph[i][j] == 1)
+                cout << j << " ";
         }
-        printf("\n");
+        cout << endl;
     }
+    
+    
 
     return 0;
 }
