@@ -25,6 +25,7 @@ bool isEmpty() {
     return front == NULL;
 }
 
+//Needs Recheck
 int length() {
     int counter = 0;
     if(isEmpty())
