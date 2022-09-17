@@ -6,7 +6,8 @@ int main() {
     vector < int > v;
     int n = 10;
 
-    //lambda
+    //Lambda expression
+    /*Here, [&] indicates that all the variables are captured by reference.*/
     auto print = [&]()
     {
         for(int i = 0; i < v.size(); i++)
