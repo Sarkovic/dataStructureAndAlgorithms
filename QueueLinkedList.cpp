@@ -9,8 +9,8 @@ struct Queue
     Queue* prev;
 };
 
-Queue* front = NULL;
-Queue* rear = NULL;
+Queue* front;
+Queue* rear;
 
 typedef struct Queue Queue;
 
@@ -26,17 +26,18 @@ bool isEmpty() {
 }
 
 int length() {
+    int counter = 0;
     if(isEmpty())
         return 0;
     else {
-        int counter = 0;
+        
         Queue* temp = front;
         if(front -> next != NULL){
             counter++;
             temp = temp -> next;
         }
-        return counter + 1;
     }
+    return counter + 1;
 }
 
 int Front(){
@@ -47,8 +48,7 @@ int Front(){
 void enQueue(int data) {
     Queue* newData = createQueue(data);
     if(front == NULL && rear == NULL) {
-        front = newData;
-        rear = newData;
+        front = rear = newData;
     }
     else {
         rear -> next = newData;
@@ -73,23 +73,23 @@ int main() {
     enQueue(14);
     enQueue(11);
     enQueue(9);
-    enQueue(14);
+    enQueue(15);
     deQueue();
     deQueue();
     enQueue(120);
     printf("Front element: %d\n", Front());
+    cout << "Size: " << length() << endl;
     deQueue();
     deQueue();
     deQueue();
     deQueue();
 
     if(isEmpty())
-        printf("Queue is Empty.\n");
+        cout << "Queue is empty" << endl;
     else
-        printf("Queue is not empty.\n");
+        cout << "Queue is not empty" << endl;
 
-
-    printf("Length of the Queue is: %d\n", length());
+    cout << length() << endl;
     
     return 0;
 }
